@@ -1,0 +1,29 @@
+# Local state and credentials
+.env
+.env.*
+!.env.example
+auth*.json
+config*.toml
+*.local.toml
+profiles.json
+provider-catalog.json
+switch-backups/
+backups/
+logs/
+
+# Build and OS artifacts
+dist/
+build/
+target/
+node_modules/
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
+mode-picker
+
+# Key and certificate material
+*.pem
+*.key
+*.p12
+*.pfx
