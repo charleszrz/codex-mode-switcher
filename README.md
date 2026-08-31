@@ -34,6 +34,8 @@ The current pre-release includes a local desktop interface and CLI, but it has n
 
 The development core requires Python 3.11 or later. This does not mean that a future end user must replace their operating system's bundled Python: distributed applications will use an isolated runtime.
 
+Unsigned desktop packages are built on macOS, Windows, and Linux in CI. They are not yet code-signed or notarized; users should prefer source installation until the signed stable release is available.
+
 ## Pre-release usage
 
 Read [English usage](docs/USAGE.md) or [中文使用说明](docs/使用说明.md) before trying the software. In particular, close Codex before applying a change and never paste a key into a profile configuration file.

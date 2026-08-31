@@ -1,0 +1,35 @@
+name: Package desktop applications
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    name: Package on ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Install packaging tools
+        shell: bash
+        run: python -m pip install . "pyinstaller>=6.0"
+      - name: Build local UI
+        shell: bash
+        run: pyinstaller --noconfirm --clean --windowed --onedir --name "Codex Mode Switcher" --paths src src/codex_mode_switcher/gui_entry.py
+      - name: Upload unsigned package
+        uses: actions/upload-artifact@v4
+        with:
+          name: codex-mode-switcher-${{ matrix.os }}-unsigned
+          path: dist/
+          if-no-files-found: error
