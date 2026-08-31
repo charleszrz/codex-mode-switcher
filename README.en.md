@@ -1,7 +1,8 @@
 # Codex Mode Switcher
 
 <p align="center">
-  <a href="./README.md">🇨🇳 简体中文</a> · <a href="./README.en.md">🇺🇸 English</a>
+  <a href="https://charleszrz.github.io/codex-mode-switcher/">Open interactive bilingual overview</a> ·
+  <a href="./README.md">简体中文 README</a>
 </p>
 
 <p align="center">
@@ -57,6 +58,16 @@ Pre-release packages contain an isolated runtime, so end users do not need to in
 6. To return to an account, fully close Codex, choose **Return to account**, then sign in directly in Codex.
 
 See the full [English usage guide](./docs/USAGE.md) for source installation and local-state removal.
+
+## Interface preview
+
+<p align="center">
+  <img src="./site/assets/screenshots/profile-selection.png" alt="Choose account or API profile" width="31%" />
+  <img src="./site/assets/screenshots/import-api-profile.png" alt="Import a credential-free API profile" width="31%" />
+  <img src="./site/assets/screenshots/remove-api-profile.png" alt="Remove a locally saved API profile" width="31%" />
+</p>
+
+From left to right: choose the profile to activate, import an API template without an API key, and remove a locally saved template. The screenshots contain no API keys or login authentication.
 
 ## For contributors
 

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Codex Mode Switcher: privacy-first local profile switching for Codex." />
+    <title>Codex Mode Switcher</title>
+    <style>
+      :root { color-scheme: dark; --ink: #f6f8fb; --muted: #b8c2d3; --line: rgba(255,255,255,.13); --blue: #5c8dff; --panel: rgba(18, 30, 54, .78); }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-width: 320px; background: radial-gradient(circle at 20% 0%, #234f89 0, transparent 36rem), #071221; color: var(--ink); font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      main { max-width: 1120px; margin: auto; padding: 28px 24px 72px; }
+      nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+      .brand { font-weight: 750; letter-spacing: -.02em; }
+      .switcher { display: flex; border: 1px solid var(--line); border-radius: 10px; padding: 3px; background: rgba(255,255,255,.05); }
+      .switcher button { border: 0; padding: 7px 10px; border-radius: 7px; background: transparent; color: var(--muted); cursor: pointer; font: inherit; }
+      .switcher button[aria-pressed="true"] { background: #eaf0ff; color: #10234b; font-weight: 700; }
+      .hero { padding: 92px 0 66px; max-width: 770px; }
+      .eyebrow { color: #a9c4ff; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: .76rem; }
+      h1 { margin: 12px 0 18px; font-size: clamp(2.5rem, 7vw, 5.4rem); letter-spacing: -.065em; line-height: .95; }
+      h2 { font-size: clamp(1.55rem, 3vw, 2.15rem); letter-spacing: -.04em; margin: 0 0 12px; }
+      p { color: var(--muted); margin: 0; }
+      .lead { font-size: 1.18rem; max-width: 650px; }
+      .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+      a.button { text-decoration: none; background: var(--blue); color: white; padding: 10px 15px; border-radius: 9px; font-weight: 700; }
+      a.button.secondary { background: transparent; border: 1px solid var(--line); color: var(--ink); }
+      .notice { padding: 16px 18px; border-left: 3px solid #84a8ff; background: rgba(111,151,255,.1); color: #dbe6ff; border-radius: 0 8px 8px 0; }
+      section { margin-top: 70px; }
+      .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+      .card { border: 1px solid var(--line); background: var(--panel); border-radius: 16px; padding: 22px; }
+      .card h3 { margin: 0 0 7px; font-size: 1.02rem; }
+      .shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+      figure { margin: 0; border: 1px solid var(--line); overflow: hidden; border-radius: 14px; background: var(--panel); }
+      figure img { display: block; width: 100%; aspect-ratio: 1.45; object-fit: cover; object-position: top; }
+      figcaption { padding: 12px 14px; color: var(--muted); font-size: .92rem; }
+      footer { margin-top: 70px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+      [hidden] { display: none !important; }
+      @media (max-width: 720px) { main { padding-inline: 18px; } .hero { padding-top: 64px; } .grid, .shots { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <nav aria-label="Language">
+        <div class="brand">Codex Mode Switcher</div>
+        <div class="switcher">
+          <button type="button" data-language="zh" aria-pressed="true">简体中文</button>
+          <button type="button" data-language="en" aria-pressed="false">English</button>
+        </div>
+      </nav>
+
+      <div data-copy="zh">
+        <header class="hero">
+          <div class="eyebrow">Privacy-first local tool</div>
+          <h1>在账号与 API 配置间，安心切换。</h1>
+          <p class="lead">Codex Mode Switcher 在你的电脑本地完成配置切换：不上传配置、不保存 API Key，也不读取或恢复 ChatGPT / OAuth 登录状态。</p>
+          <div class="actions"><a class="button" href="https://github.com/charleszrz/codex-mode-switcher/releases/tag/v0.1.0-alpha.2">下载 Alpha 预发布版</a><a class="button secondary" href="https://github.com/charleszrz/codex-mode-switcher">查看源码</a></div>
+        </header>
+        <div class="notice">当前是 Alpha 预发布版：macOS 与 Windows 构建尚未签名。请先在非唯一工作环境中测试，并使用自己的日常备份方案备份 Codex 配置。</div>
+        <section><h2>隐私是产品边界，不是附加选项</h2><div class="grid"><article class="card"><h3>仅本地</h3><p>无账号、无云同步、无遥测、无分析、无自动更新。</p></article><article class="card"><h3>Key 只用一次</h3><p>仅在你确认启用 API 时写入 Codex 当前认证位置；工具不保留副本，也不备份。</p></article><article class="card"><h3>不碰登录状态</h3><p>不会读取、导出、复制或恢复 ChatGPT / OAuth 认证信息。</p></article></div></section>
+        <section><h2>界面预览</h2><div class="shots"><figure><img src="assets/screenshots/profile-selection.png" alt="选择配置界面" /><figcaption>选择个人账号或导入的 API 配置。</figcaption></figure><figure><img src="assets/screenshots/import-api-profile.png" alt="导入 API 配置" /><figcaption>只导入不含 API Key 的配置模板。</figcaption></figure><figure><img src="assets/screenshots/remove-api-profile.png" alt="移除 API 配置" /><figcaption>按需移除本机保存的配置模板。</figcaption></figure></div></section>
+      </div>
+
+      <div data-copy="en" hidden>
+        <header class="hero">
+          <div class="eyebrow">Privacy-first local tool</div>
+          <h1>Switch account and API configurations with confidence.</h1>
+          <p class="lead">Codex Mode Switcher changes configurations locally on your computer: no uploads, no retained API keys, and no reading or restoring ChatGPT / OAuth login state.</p>
+          <div class="actions"><a class="button" href="https://github.com/charleszrz/codex-mode-switcher/releases/tag/v0.1.0-alpha.2">Download Alpha pre-release</a><a class="button secondary" href="https://github.com/charleszrz/codex-mode-switcher">View source</a></div>
+        </header>
+        <div class="notice">This is an Alpha pre-release: macOS and Windows builds are not yet signed. Test outside your only working environment and back up your Codex configuration through your normal device-backup process.</div>
+        <section><h2>Privacy is a product boundary, not an add-on</h2><div class="grid"><article class="card"><h3>Local only</h3><p>No accounts, cloud sync, telemetry, analytics, or automatic updates.</p></article><article class="card"><h3>Key used once</h3><p>Written only to Codex's active authentication location when you confirm API activation; never retained or backed up by the tool.</p></article><article class="card"><h3>Never touches login state</h3><p>Never reads, exports, copies, or restores ChatGPT / OAuth authentication.</p></article></div></section>
+        <section><h2>Interface preview</h2><div class="shots"><figure><img src="assets/screenshots/profile-selection.png" alt="Profile selection" /><figcaption>Choose an account or imported API configuration.</figcaption></figure><figure><img src="assets/screenshots/import-api-profile.png" alt="Import API profile" /><figcaption>Import only a configuration template without an API key.</figcaption></figure><figure><img src="assets/screenshots/remove-api-profile.png" alt="Remove API profile" /><figcaption>Remove a locally saved template when it is no longer needed.</figcaption></figure></div></section>
+      </div>
+      <footer>MIT License · Not affiliated with, sponsored by, or endorsed by OpenAI.</footer>
+    </main>
+    <script>
+      const buttons = document.querySelectorAll('[data-language]');
+      const copies = document.querySelectorAll('[data-copy]');
+      function setLanguage(language) {
+        document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
+        buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.language === language)));
+        copies.forEach((copy) => { copy.hidden = copy.dataset.copy !== language; });
+        localStorage.setItem('codex-mode-switcher-language', language);
+      }
+      buttons.forEach((button) => button.addEventListener('click', () => setLanguage(button.dataset.language)));
+      const saved = localStorage.getItem('codex-mode-switcher-language');
+      if (saved === 'zh' || saved === 'en') setLanguage(saved);
+    </script>
+  </body>
+</html>
