@@ -24,6 +24,11 @@ jobs:
       - name: Run tests
         shell: bash
         run: PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m unittest discover -s tests -v
+      - name: Build wheel
+        shell: bash
+        run: |
+          wheel_dir=$(mktemp -d)
+          python -m pip wheel --no-deps --wheel-dir "$wheel_dir" .
       - name: Audit release contents
         shell: bash
         run: scripts/audit-release.sh
