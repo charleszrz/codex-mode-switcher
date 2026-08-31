@@ -15,7 +15,12 @@ while IFS= read -r -d '' file; do
     echo "forbidden release artifact: $relative" >&2
     fail=1
   fi
-done < <(find . -path './.git' -prune -o -type f -print0)
+done < <(find . \( -path './.git' -o -path '*/__pycache__' -o -path '*/node_modules' -o -path './dist' -o -path './build' -o -path './target' \) -prune -o -type f -print0)
+
+if git ls-files | rg -n -e "$forbidden_paths"; then
+  echo "forbidden generated artifact is tracked" >&2
+  fail=1
+fi
 
 if rg -n -I -e "$secret_patterns" -e "$local_path_patterns" --glob '!.git/**' .; then
   echo "possible secret or local path found" >&2

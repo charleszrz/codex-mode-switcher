@@ -29,3 +29,7 @@ See [PRIVACY.md](PRIVACY.md) and [THREAT_MODEL.md](THREAT_MODEL.md) before testi
 ## Status
 
 The repository currently contains only release-safety documentation and auditing infrastructure. No user-ready executable has been released.
+
+## Development requirement
+
+The development core requires Python 3.11 or later. This does not mean that a future end user must replace their operating system's bundled Python: distributed applications will use an isolated runtime.
