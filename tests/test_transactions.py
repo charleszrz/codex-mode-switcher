@@ -3,7 +3,7 @@ from pathlib import Path
 import unittest
 
 from codex_mode_switcher.errors import TransactionError
-from codex_mode_switcher.transactions import PlannedWrite, apply_writes
+from codex_mode_switcher.transactions import PlannedDelete, PlannedWrite, apply_changes, apply_writes
 
 
 class TransactionTests(unittest.TestCase):
@@ -49,3 +49,17 @@ class TransactionTests(unittest.TestCase):
             with self.assertRaises(TransactionError):
                 apply_writes((PlannedWrite(target, b"changed"),), replace_then_fail)
             self.assertEqual(target.read_bytes(), b"original")
+
+    def test_restores_deleted_file_when_a_later_change_fails(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            deleted = root / "deleted"
+            failing = root / "failing"
+            deleted.write_bytes(b"restore-me")
+
+            def fail_write(path: Path, content: bytes) -> None:
+                raise OSError("simulated failure")
+
+            with self.assertRaises(TransactionError):
+                apply_changes((PlannedDelete(deleted), PlannedWrite(failing, b"new")), fail_write)
+            self.assertEqual(deleted.read_bytes(), b"restore-me")

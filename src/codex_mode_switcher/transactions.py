@@ -7,6 +7,7 @@ from dataclasses import dataclass
 import os
 from pathlib import Path
 import tempfile
+from typing import Union
 
 from .errors import TransactionError
 
@@ -15,6 +16,14 @@ from .errors import TransactionError
 class PlannedWrite:
     path: Path
     content: bytes
+
+
+@dataclass(frozen=True)
+class PlannedDelete:
+    path: Path
+
+
+PlannedChange = Union[PlannedWrite, PlannedDelete]
 
 
 Writer = Callable[[Path, bytes], None]
@@ -35,20 +44,30 @@ def atomic_write(path: Path, content: bytes) -> None:
 
 
 def apply_writes(writes: Iterable[PlannedWrite], writer: Writer = atomic_write) -> None:
-    """Apply a small set of writes, restoring original bytes after any failure."""
-    planned = tuple(writes)
-    paths = [write.path.resolve() for write in planned]
+    """Apply writes, restoring original bytes after any failure."""
+    apply_changes(tuple(writes), writer)
+
+
+def apply_changes(changes: Iterable[PlannedChange], writer: Writer = atomic_write) -> None:
+    """Apply writes/deletes, restoring original bytes after any failure."""
+    planned = tuple(changes)
+    paths = [change.path.resolve() for change in planned]
     if len(paths) != len(set(paths)):
         raise TransactionError("A transaction cannot write the same path twice.")
 
     originals = {path: path.read_bytes() if path.exists() else None for path in paths}
     attempted: list[Path] = []
     try:
-        for write in planned:
-            attempted.append(write.path)
-            writer(write.path, write.content)
-            if write.path.read_bytes() != write.content:
-                raise OSError("Post-write verification failed.")
+        for change in planned:
+            attempted.append(change.path)
+            if isinstance(change, PlannedWrite):
+                writer(change.path, change.content)
+                if change.path.read_bytes() != change.content:
+                    raise OSError("Post-write verification failed.")
+            else:
+                change.path.unlink(missing_ok=True)
+                if change.path.exists():
+                    raise OSError("Post-delete verification failed.")
     except Exception as error:
         restore_error: Exception | None = None
         for path in reversed(attempted):
