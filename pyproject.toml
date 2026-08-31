@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "codex-mode-switcher"
-version = "0.0.0"
+version = "0.1.0a1"
 description = "Privacy-first local profile switching core for Codex"
 requires-python = ">=3.11"
 license = {text = "MIT"}

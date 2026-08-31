@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.1.0-alpha.1
 
 - Added strict-privacy API profile switching with no retained inactive API key.
 - Added local desktop UI and CLI.
