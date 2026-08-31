@@ -1,8 +1,7 @@
 # Codex Mode Switcher
 
 <p align="center">
-  <a href="https://charleszrz.github.io/codex-mode-switcher/">打开中英双语介绍页</a> ·
-  <a href="./README.en.md">English README</a>
+  <a href="./README.md">简体中文</a> | <a href="./README.en.md">English</a>
 </p>
 
 <p align="center">
@@ -62,9 +61,9 @@ Codex Mode Switcher 把这件事收敛为可预览、可验证、可回滚的本
 ## 界面预览
 
 <p align="center">
-  <img src="./site/assets/screenshots/profile-selection.png" alt="选择个人账号或 API 配置" width="31%" />
-  <img src="./site/assets/screenshots/import-api-profile.png" alt="导入不含凭据的 API 配置" width="31%" />
-  <img src="./site/assets/screenshots/remove-api-profile.png" alt="移除本地 API 配置" width="31%" />
+  <img src="./assets/screenshots/profile-selection.png" alt="选择个人账号或 API 配置" width="31%" />
+  <img src="./assets/screenshots/import-api-profile.png" alt="导入不含凭据的 API 配置" width="31%" />
+  <img src="./assets/screenshots/remove-api-profile.png" alt="移除本地 API 配置" width="31%" />
 </p>
 
 从左到右：选择要启用的配置、导入不含 API Key 的配置模板、移除本机保存的配置模板。截图不包含 API Key 或登录认证信息。

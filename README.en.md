@@ -1,8 +1,7 @@
 # Codex Mode Switcher
 
 <p align="center">
-  <a href="https://charleszrz.github.io/codex-mode-switcher/">Open interactive bilingual overview</a> ·
-  <a href="./README.md">简体中文 README</a>
+  <a href="./README.md">简体中文</a> | <a href="./README.en.md">English</a>
 </p>
 
 <p align="center">
@@ -62,9 +61,9 @@ See the full [English usage guide](./docs/USAGE.md) for source installation and 
 ## Interface preview
 
 <p align="center">
-  <img src="./site/assets/screenshots/profile-selection.png" alt="Choose account or API profile" width="31%" />
-  <img src="./site/assets/screenshots/import-api-profile.png" alt="Import a credential-free API profile" width="31%" />
-  <img src="./site/assets/screenshots/remove-api-profile.png" alt="Remove a locally saved API profile" width="31%" />
+  <img src="./assets/screenshots/profile-selection.png" alt="Choose account or API profile" width="31%" />
+  <img src="./assets/screenshots/import-api-profile.png" alt="Import a credential-free API profile" width="31%" />
+  <img src="./assets/screenshots/remove-api-profile.png" alt="Remove a locally saved API profile" width="31%" />
 </p>
 
 From left to right: choose the profile to activate, import an API template without an API key, and remove a locally saved template. The screenshots contain no API keys or login authentication.
