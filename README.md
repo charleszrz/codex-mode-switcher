@@ -16,11 +16,11 @@ A privacy-first, local profile switcher for Codex on macOS, Windows, and Linux.
 
 | Platform | Credential store | Release status |
 | --- | --- | --- |
-| macOS | Keychain | Planned stable |
-| Windows | Credential Manager / DPAPI | Planned stable |
-| Linux | Secret Service only | Planned preview |
+| macOS | Strict privacy mode (no retained inactive key) | In development |
+| Windows | Strict privacy mode (no retained inactive key) | In development |
+| Linux | Strict privacy mode (no retained inactive key) | In development |
 
-Linux convenience storage is unavailable when a secure Secret Service implementation cannot be detected. The tool will not replace it with a file-based key store.
+An optional system-credential-store convenience mode is a future feature, not part of the current implementation. It will never fall back to a file-based key store.
 
 ## Data handling
 
@@ -28,8 +28,12 @@ See [PRIVACY.md](PRIVACY.md) and [THREAT_MODEL.md](THREAT_MODEL.md) before testi
 
 ## Status
 
-The repository currently contains only release-safety documentation and auditing infrastructure. No user-ready executable has been released.
+The current pre-release includes a local desktop interface and CLI, but it has not completed real-device acceptance testing or public-release audit.
 
 ## Development requirement
 
 The development core requires Python 3.11 or later. This does not mean that a future end user must replace their operating system's bundled Python: distributed applications will use an isolated runtime.
+
+## Pre-release usage
+
+Read [English usage](docs/USAGE.md) or [中文使用说明](docs/使用说明.md) before trying the software. In particular, close Codex before applying a change and never paste a key into a profile configuration file.
