@@ -1,5 +1,7 @@
 # Usage
 
+<p align="right"><a href="./使用说明.md">🇨🇳 简体中文</a> · <a href="./USAGE.md">🇺🇸 English</a></p>
+
 This is pre-release software. Use it only after backing up your own Codex configuration through your normal device backup process.
 
 ## Install from source
