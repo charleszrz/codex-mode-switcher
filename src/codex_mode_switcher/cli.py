@@ -136,6 +136,9 @@ def parser() -> argparse.ArgumentParser:
     account = commands.add_parser("activate-account", help="Restore account config and remove active API authentication.")
     account.add_argument("--apply", action="store_true")
     account.set_defaults(handler=command_activate_account)
+
+    gui = commands.add_parser("gui", help="Open the local desktop interface.")
+    gui.set_defaults(handler=lambda _: __import__("codex_mode_switcher.gui", fromlist=["run"]).run())
     return value
 
 
